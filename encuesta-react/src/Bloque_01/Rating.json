@@ -1,0 +1,15 @@
+{
+    "elements": [
+      {
+        "type": "rating",
+        "name": "rating",
+        "title": "¿Qué puntuación nos das?",
+        "isRequired": true,
+        "rateMin": 0,
+        "rateMax": 10,
+        "minRateDescription": "Malo",
+        "maxRateDescription": "Excelente"
+      }
+    ]
+  }
+  
