@@ -1,12 +1,11 @@
 import React from 'react';
-import 'survey-core/modern.min.css';
+import 'survey-core/defaultV2.min.css'; // Cambiamos a defaultV2.min.css para un estilo más moderno
 import { StylesManager, Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
 
-StylesManager.applyTheme("modern");
+StylesManager.applyTheme("defaultV2"); // Aplicamos el nuevo tema
 
 const surveyJson = {
-  title: "Encuesta de Satisfacción",
   logo: "https://www.salsasangucheria.com/encuestas/salsalogof.png",
   logoPosition: "top",
   showProgressBar: "top",
@@ -40,30 +39,56 @@ const surveyJson = {
           name: "calidadPlato",
           title: "La calidad del plato recibido",
           isRequired: true,
-          rateValues: ["Muy malo", "Malo", "Indiferente", "Bueno", "Excelente"],
-          hasOther: true,
-          otherText: "Menciona el plato por el que eligió esta respuesta"
+          rateType: "smileys",
+          rateValues: [
+            { value: 1, text: "Muy malo" },
+            { value: 2, text: "Malo" },
+            { value: 3, text: "Indiferente" },
+            { value: 4, text: "Bueno" },
+            { value: 5, text: "Excelente" }
+          ]
         },
         {
           type: "rating",
           name: "servicioMozo",
           title: "El servicio del mozo en tu visita",
           isRequired: true,
-          rateValues: ["Muy malo", "Malo", "Indiferente", "Bueno", "Excelente"]
+          rateType: "smileys",
+          rateValues: [
+            { value: 1, text: "Muy malo" },
+            { value: 2, text: "Malo" },
+            { value: 3, text: "Indiferente" },
+            { value: 4, text: "Bueno" },
+            { value: 5, text: "Excelente" }
+          ]
         },
         {
           type: "rating",
           name: "decoracionMusica",
           title: "La decoración y música del restaurante",
           isRequired: true,
-          rateValues: ["Muy malo", "Malo", "Indiferente", "Bueno", "Excelente"]
+          rateType: "smileys",
+          rateValues: [
+            { value: 1, text: "Muy malo" },
+            { value: 2, text: "Malo" },
+            { value: 3, text: "Indiferente" },
+            { value: 4, text: "Bueno" },
+            { value: 5, text: "Excelente" }
+          ]
         },
         {
           type: "rating",
           name: "limpiezaOrden",
           title: "El orden y limpieza en el restaurante",
           isRequired: true,
-          rateValues: ["Muy malo", "Malo", "Indiferente", "Bueno", "Excelente"]
+          rateType: "smileys",
+          rateValues: [
+            { value: 1, text: "Muy malo" },
+            { value: 2, text: "Malo" },
+            { value: 3, text: "Indiferente" },
+            { value: 4, text: "Bueno" },
+            { value: 5, text: "Excelente" }
+          ]
         }
       ],
       description: "Si calificas alguno de los aspectos con 'Muy malo' o 'Malo', te pediremos que nos expliques por qué."
@@ -108,7 +133,7 @@ function App() {
   const survey = new Model(surveyJson);
 
   return (
-    <div className="App">
+    <div className="survey-container" style={{ maxWidth: "800px", margin: "0 auto", padding: "20px", backgroundColor: "#f9f9f9", borderRadius: "8px" }}>
       <Survey model={survey} />
     </div>
   );
