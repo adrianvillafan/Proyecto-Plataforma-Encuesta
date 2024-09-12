@@ -1,139 +1,74 @@
-import React from 'react';
-import 'survey-core/defaultV2.min.css'; // Cambiamos a defaultV2.min.css para un estilo más moderno
+import React, { useState } from 'react';
+import 'survey-core/defaultV2.min.css'; // Estilos de SurveyJS
 import { StylesManager, Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
 
-StylesManager.applyTheme("defaultV2"); // Aplicamos el nuevo tema
+// Importamos el fragmento NumberRate
+import NumberRate from './Bloque_01/NumberRate';
 
-const surveyJson = {
-  logo: "https://www.salsasangucheria.com/encuestas/salsalogof.png",
-  logoPosition: "top",
-  showProgressBar: "top",
-  progressBarType: "pages",
-  completedHtml: "<h3>¡Gracias por completar la encuesta!</h3><p>Tu opinión es muy importante para nosotros.</p>",
-  pages: [
-    {
-      name: "page1",
-      elements: [
-        {
-          type: "dropdown",
-          name: "mozo",
-          title: "¿Qué mozo te atendió?",
-          isRequired: true,
-          choices: [
-            "Rubby Cardenas",
-            "Maribel Castillo",
-            "Denise Cullash",
-            "Reina Dextre",
-            "Leslie Merino",
-            "Genesis Luna"
-          ]
-        }
-      ]
-    },
-    {
-      name: "page2",
-      elements: [
-        {
-          type: "rating",
-          name: "calidadPlato",
-          title: "La calidad del plato recibido",
-          isRequired: true,
-          rateType: "smileys",
-          rateValues: [
-            { value: 1, text: "Muy malo" },
-            { value: 2, text: "Malo" },
-            { value: 3, text: "Indiferente" },
-            { value: 4, text: "Bueno" },
-            { value: 5, text: "Excelente" }
-          ]
-        },
-        {
-          type: "rating",
-          name: "servicioMozo",
-          title: "El servicio del mozo en tu visita",
-          isRequired: true,
-          rateType: "smileys",
-          rateValues: [
-            { value: 1, text: "Muy malo" },
-            { value: 2, text: "Malo" },
-            { value: 3, text: "Indiferente" },
-            { value: 4, text: "Bueno" },
-            { value: 5, text: "Excelente" }
-          ]
-        },
-        {
-          type: "rating",
-          name: "decoracionMusica",
-          title: "La decoración y música del restaurante",
-          isRequired: true,
-          rateType: "smileys",
-          rateValues: [
-            { value: 1, text: "Muy malo" },
-            { value: 2, text: "Malo" },
-            { value: 3, text: "Indiferente" },
-            { value: 4, text: "Bueno" },
-            { value: 5, text: "Excelente" }
-          ]
-        },
-        {
-          type: "rating",
-          name: "limpiezaOrden",
-          title: "El orden y limpieza en el restaurante",
-          isRequired: true,
-          rateType: "smileys",
-          rateValues: [
-            { value: 1, text: "Muy malo" },
-            { value: 2, text: "Malo" },
-            { value: 3, text: "Indiferente" },
-            { value: 4, text: "Bueno" },
-            { value: 5, text: "Excelente" }
-          ]
-        }
-      ],
-      description: "Si calificas alguno de los aspectos con 'Muy malo' o 'Malo', te pediremos que nos expliques por qué."
-    },
-    {
-      name: "page3",
-      elements: [
-        {
-          type: "text",
-          name: "nombre",
-          title: "Nombre",
-          isRequired: true
-        },
-        {
-          type: "text",
-          name: "apellido",
-          title: "Apellido",
-          isRequired: true
-        },
-        {
-          type: "text",
-          name: "email",
-          title: "E-mail",
-          inputType: "email",
-          isRequired: true
-        },
-        {
-          type: "text",
-          name: "telefono",
-          title: "Número celular",
-          inputType: "tel",
-          isRequired: true
-        }
-      ]
-    }
-  ],
-  showQuestionNumbers: "off",
-  completeText: "Enviar"
-};
+StylesManager.applyTheme("defaultV2");
 
 function App() {
+  const [bloque01Value, setBloque01Value] = useState(null);
+  const numberRate = NumberRate(bloque01Value, setBloque01Value);
+
+  const surveyJson = {
+    completedHtml: "<h3>¡Gracias por completar la encuesta!</h3><p>Tu opinión es muy importante para nosotros.</p>",
+    showProgressBar: "top",
+    progressBarType: "pages",
+    pages: [
+      {
+        name: "page1",
+        elements: []
+      },
+      {
+        name: "page2",
+        elements: [numberRate] // Llamamos a NumberRate que contiene la lógica
+      },
+      {
+        name: "page3",
+        elements: [
+          {
+            type: "text",
+            name: "nombre",
+            title: "Nombre",
+            isRequired: true
+          },
+          {
+            type: "text",
+            name: "apellido",
+            title: "Apellido",
+            isRequired: true
+          },
+          {
+            type: "text",
+            name: "email",
+            title: "E-mail",
+            inputType: "email",
+            isRequired: true
+          },
+          {
+            type: "text",
+            name: "telefono",
+            title: "Número celular",
+            inputType: "tel",
+            isRequired: true
+          }
+        ]
+      }
+    ],
+    showQuestionNumbers: "off",
+    completeText: "Enviar"
+  };
+
   const survey = new Model(surveyJson);
 
   return (
     <div className="survey-container" style={{ maxWidth: "800px", margin: "0 auto", padding: "20px", backgroundColor: "#f9f9f9", borderRadius: "8px" }}>
+      {/* Centramos el logo */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+        <img src="https://www.salsasangucheria.com/encuestas/salsalogof.png" alt="Salsa Logo" style={{ width: "200px", height: "auto" }} />
+      </div>
       <Survey model={survey} />
     </div>
   );
