@@ -5,12 +5,14 @@ import { Survey } from 'survey-react-ui';
 
 // Importamos el fragmento NumberRate
 import NumberRate from './Bloque_01/NumberRate';
+import MozoSelector from './Bloque_01/MozoSelector';
 
 StylesManager.applyTheme("defaultV2");
 
 function App() {
   const [bloque01Value, setBloque01Value] = useState(null);
   const numberRate = NumberRate(bloque01Value, setBloque01Value);
+  const mozoSelector = MozoSelector();
 
   const surveyJson = {
     completedHtml: "<h3>¡Gracias por completar la encuesta!</h3><p>Tu opinión es muy importante para nosotros.</p>",

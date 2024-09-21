@@ -12,6 +12,8 @@ const MozoSelector = () => {
       });
   }, []);
 
+  console.log(mozos);
+
   return {
     type: "dropdown",
     name: "mozo",
