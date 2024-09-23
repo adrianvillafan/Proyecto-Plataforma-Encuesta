@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import 'survey-core/defaultV2.min.css'; // Estilos de SurveyJS
-import { StylesManager, Model } from 'survey-core';
+import { StylesManager, Model, surveyLocalization } from 'survey-core';
+import "survey-core/survey.i18n";
 import { Survey } from 'survey-react-ui';
+
 
 // Importamos el fragmento NumberRate
 import NumberRate from './Bloque_01/NumberRate';
 import MozoSelector from './Bloque_01/MozoSelector';
 
 StylesManager.applyTheme("defaultV2");
+
+surveyLocalization.currentLocale = "es";
+
 
 function App() {
   const [bloque01Value, setBloque01Value] = useState(null);
@@ -21,11 +26,11 @@ function App() {
     pages: [
       {
         name: "page1",
-        elements: []
+        elements: [numberRate]
       },
       {
         name: "page2",
-        elements: [numberRate] // Llamamos a NumberRate que contiene la lógica
+        elements: [] // Llamamos a NumberRate que contiene la lógica
       },
       {
         name: "page3",
@@ -67,9 +72,10 @@ function App() {
 
   return (
     <div className="survey-container" style={{ maxWidth: "800px", margin: "0 auto", padding: "20px", backgroundColor: "#f9f9f9", borderRadius: "8px" }}>
-      {/* Centramos el logo */}
+      {/* Centramos el logo */ }
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-        <img src="https://www.salsasangucheria.com/encuestas/salsalogof.png" alt="Salsa Logo" style={{ width: "200px", height: "auto" }} />
+        <img src="https://i.imgur.com/TsAB5gf.png" alt="Muy Muy Logo" style={{ width: "200px", height: "auto" }} />
+        {/* <img src="https://www.salsasangucheria.com/encuestas/salsalogof.png" alt="Salsa Logo" style={{ width: "200px", height: "auto" }} /> */}
       </div>
       <Survey model={survey} />
     </div>

@@ -6,7 +6,7 @@ const NumberRate = (bloque01Value, setBloque01Value) => {
       {
         type: "rating",
         name: "recomendar",
-        title: "¿Qué tan probable es que recomiendes Panchita Miraflores a un familiar o amigo?",
+        title: "¿Qué tan probable es que recomiendes Muy Muy Barra Cevichera a un familiar o amigo?",
         isRequired: true,
         rateMin: 0,
         rateMax: 10,
