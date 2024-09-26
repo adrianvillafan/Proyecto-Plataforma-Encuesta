@@ -1,0 +1,9 @@
+:root {
+    --sjs-primary-backcolor: #008080; /* Teal Green */
+    --sjs-primary-backcolor-dark: #005f5f; /* Darker Teal for hover effects */
+    --sjs-primary-backcolor-light: #00b0b0; /* Lighter Teal for lighter effects */
+    --sjs-primary-forecolor: #ffffff; /* White text on buttons */
+    --sjs-text-color: #000000; /* Black text */
+    --sjs-border-color: #ff7f50; /* Orange border for accents */
+  }
+  
