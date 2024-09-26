@@ -1,49 +1,146 @@
-const NumberRate = (bloque01Value, setBloque01Value) => {
-    return {
-      type: "panel", // Usamos un panel para agrupar los elementos
-      name: "numberRatePanel",
+import { useEffect } from 'react';
+
+const PregIntermedias = () => {
+
+  useEffect(() => {
+    // Seleccionamos los elementos que tienen la clase deseada
+    const elements = document.querySelectorAll('.sd-scrollable-container.sd-rating.sd-rating--wrappable');
+    
+    // Iteramos sobre ellos y aplicamos el estilo
+    elements.forEach(element => {
+      element.style.margin = '0 auto';
+    });
+  }, []); // El array vacío asegura que esto solo ocurra una vez, después de montar el componente
+
+  return [
+    {
+      type: "panel",
+      name: "tiempo_respuesta_whatsapp_panel",
       elements: [
         {
           type: "rating",
-          name: "recomendar",
-          title: "¿Qué tan probable es que recomiendes Muy Muy Barra Cevichera a un familiar o amigo?",
+          name: "tiempo_respuesta_whatsapp",
+          title: "¿Qué tan satisfecho se encuentra con el tiempo de respuesta al hacer el pedido por WhatsApp?",
           isRequired: true,
-          rateMin: 0,
-          rateMax: 10,
-          rateStep: 1,
           rateType: "smileys",  // Cambiado a smileys
           scaleColorMode: "colored",  // Usamos colores en las caritas
           rateColorMode: "scale",  // La escala de color cambia con la valoración
-          onValueChanged: (survey, options) => {
-            setBloque01Value(options.value); // Actualiza el valor de rating
-          },
-          // Aplicamos un estilo en línea para centrar las caritas
-          renderAs: "svg", // Renderizado como SVG
-          cssClasses: {
-            root: "centered-rating", // Clase personalizada para centrar
-          }
-        },
-        {
-          type: "comment",
-          name: "razon_baja",
-          title: "¿Cuál es la principal razón para calificarnos con esa nota?",
-          visibleIf: "{recomendar} <= 6" // Condición para valores 0-6
-        },
-        {
-          type: "comment",
-          name: "mejorar",
-          title: "¿Qué aspectos podríamos mejorar para que nos evalúes con mejor nota?",
-          visibleIf: "{recomendar} >= 7 and {recomendar} <= 8" // Condición para valores 7-8
-        },
-        {
-          type: "comment",
-          name: "aspectos_positivos",
-          title: "¿Qué aspectos positivos destacas para calificarnos con esa nota?",
-          visibleIf: "{recomendar} >= 9" // Condición para valores 9-10
+          displayMode: "buttons",  // Cambiado a botones
+          renderAs: "smiley",
+          hideNumber: true
         }
       ]
-    };
-  };
-  
-  export default NumberRate;
-  
+    },
+    {
+      type: "panel",
+      name: "tiempo_entrega_pedido_panel",
+      elements: [
+        {
+          type: "rating",
+          name: "tiempo_entrega_pedido",
+          title: "¿Qué tan satisfecho se encuentra con el tiempo de entrega de su pedido?",
+          isRequired: true,
+          rateType: "smileys",  // Cambiado a smileys
+          scaleColorMode: "colored",  // Usamos colores en las caritas
+          rateColorMode: "scale",  // La escala de color cambia con la valoración
+          displayMode: "buttons", 
+          renderAs: "smiley",
+          hideNumber: true
+        }
+      ]
+    },
+    {
+      type: "panel",
+      name: "empaque_pedido_panel",
+      elements: [
+        {
+          type: "rating",
+          name: "empaque_pedido",
+          title: "¿Qué tan satisfecho se encuentra con el empaque de su pedido?",
+          isRequired: true,
+          rateType: "smileys",  // Cambiado a smileys
+          scaleColorMode: "colored",  // Usamos colores en las caritas
+          rateColorMode: "scale",  // La escala de color cambia con la valoración
+          displayMode: "buttons", 
+          renderAs: "smiley",
+          hideNumber: true
+        }
+      ]
+    },
+    {
+      type: "panel",
+      name: "presentacion_estado_pedido_panel",
+      elements: [
+        {
+          type: "rating",
+          name: "presentacion_estado_pedido",
+          title: "¿Qué tan satisfecho se encuentra con la presentación y estado de su pedido al ser entregado?",
+          isRequired: true,
+          rateType: "smileys",  // Cambiado a smileys
+          scaleColorMode: "colored",  // Usamos colores en las caritas
+          rateColorMode: "scale",  // La escala de color cambia con la valoración
+          displayMode: "buttons", 
+          renderAs: "smiley",
+          hideNumber: true
+        }
+      ]
+    },
+    {
+      type: "panel",
+      name: "amabilidad_personal_panel",
+      elements: [
+        {
+          type: "rating",
+          name: "amabilidad_personal",
+          title: "¿Cómo evaluaría la amabilidad del personal que tomó tu pedido?",
+          isRequired: true,
+          rateType: "smileys",  // Cambiado a smileys
+          scaleColorMode: "colored",  // Usamos colores en las caritas
+          rateColorMode: "scale",  // La escala de color cambia con la valoración
+          displayMode: "buttons", 
+          renderAs: "smiley",
+          hideNumber: true
+        }
+      ]
+    },
+    {
+      type: "panel",
+      name: "novedades_panel",
+      elements: [
+        {
+          type: "comment",
+          name: "novedades",
+          title: "¿Qué tipo de productos o novedades te gustaría encontrar?",
+          isRequired: false
+        }
+      ]
+    },
+    {
+      type: "panel",
+      name: "comentarios_panel",
+      elements: [
+        {
+          type: "comment",
+          name: "comentarios",
+          title: "¿Tienes algún comentario adicional?",
+          isRequired: false
+        }
+      ]
+    },
+    {
+      type: "panel",
+      name: "adjuntar_imagen_panel",
+      elements: [
+        {
+          type: "file",
+          name: "adjuntar_imagen",
+          title: "Si deseas, puedes adjuntar una foto junto a tu respuesta",
+          storeDataAsText: true,
+          maxSize: 102400 // Tamaño máximo del archivo en bytes
+        }
+      ]
+    }
+  ];
+};
+
+export default PregIntermedias;

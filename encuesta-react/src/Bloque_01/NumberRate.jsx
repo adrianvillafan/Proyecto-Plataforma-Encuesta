@@ -8,9 +8,10 @@ const NumberRate = (bloque01Value, setBloque01Value) => {
         name: "recomendar",
         title: "¿Qué tan probable es que recomiendes Muy Muy Barra Cevichera a un familiar o amigo?",
         isRequired: true,
-        rateMin: 0,
+        rateMin: 1,
         rateMax: 10,
         rateStep: 1,
+        displayMode: "buttons",
         onValueChanged: (survey, options) => {
           setBloque01Value(options.value); // Actualiza el valor de rating
         }
